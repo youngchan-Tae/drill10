@@ -6,10 +6,25 @@ from pico2d import *
 name = "PauseState"
 image = None
 
+class Pause:
+    def __init__(self):
+        self.image = load_image('pause.png')
+        self.ps = 0
+
+    def draw(self):
+        if(self.ps == 1):
+            self.image.draw(400, 340)
+
+    def update(self):
+        self.ps = (self.ps + 1) % 3
+
+
+
+
 
 def enter():
     global image
-    image = load_image('pause.png')
+    image = Pause()
 
 
 def exit():
@@ -17,7 +32,7 @@ def exit():
     del (image)
 
 def update():
-    pass
+    image.update()
 
 def handle_events():
     events = get_events()
@@ -30,9 +45,9 @@ def handle_events():
 
 def draw():
     clear_canvas()
-    image.draw(50, 50)
     main_state.grass.draw()
     main_state.boy.draw()
+    image.draw()
     update_canvas()
 
 def pause():

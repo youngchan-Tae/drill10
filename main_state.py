@@ -45,13 +45,6 @@ class Boy:
     def draw(self):
         self.image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y)
 
-class Pause:
-    def __init__(self):
-        self.image = load_image('pause.png')
-
-    def draw(self):
-        self.image.draw(300, 300)
-
 def enter():
     global boy, grass
     boy = Boy()
